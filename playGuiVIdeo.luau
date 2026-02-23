@@ -7,7 +7,7 @@ return function(Player, jsonData)
     local resX, resY = data.Res[1], data.Res[2]
     
     local sGui = Instance.new("ScreenGui")
-    sGui.Parent = Player
+    sGui.Parent = Player:WaitForChild("PlayerGui")
     
     local container = Instance.new("Frame")
     container.Size = UDim2.fromScale(1, 1)
