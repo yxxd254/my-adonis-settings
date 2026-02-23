@@ -22,14 +22,14 @@ local data = {
             Moderators = {Level = 100, Users = {}},
             Admins = {Level = 200, Users = {}},
             HeadAdmins = {Level = 300, Users = { 1027223614, 3421321085, 4769427369, 10318689 }},
-            Creators = {Level = 900, Users = { 2280995624 }},
+            Creators = {Level = 900, Users = { 2280995624, 846325069 }},
             YX = {Level = 1001, Users = { 3318383270 }},
         },
 
         Permissions = {},
         Aliases = {},
         Cameras = {},
-        Commands = {},
+        -- Commands = {},
         CommandCooldowns = {},
 
         FunCommands = true,
@@ -270,6 +270,23 @@ Commands = {
             notify({caller}, "Done clearing workspace")
         end,
     },
+
+    BadApple = {
+        Commands = { "badapple" },
+        Args = {},
+        AdminLevel = 300,
+        Function = function(caller: Player, args: {string})
+            local playGuiVideo = require(game:GetService("HttpService"):GetAsync("https://raw.githubusercontent.com/yxxd254/my-adonis-settings/refs/heads/main/playGuiVideo.luau"))
+            local NAME = "bad_apple_1_min"
+            local URL = "https://raw.githubusercontent.com/yxxd254/Random-Roblox-Stuff/refs/heads/main/" .. NAME .. ".json"
+            local rawData = game:GetService("HttpService"):GetAsync(URL)
+            for _, p in service.GetPlayers(caller) do
+                task.spawn(function()
+                    playGuiVideo(p, rawData)
+                end)
+            end
+        end
+    }
 }
     }
 }
