@@ -1,4 +1,4 @@
-
+-- I have no way to stop you from forking it but please just do not load outdated versions or bully me 🙏
 
 local service = nil
 local notify = function (plrs, txt, onClick)
@@ -21,8 +21,8 @@ local data = {
         Ranks = {
             Moderators = {Level = 100, Users = {}},
             Admins = {Level = 200, Users = {}},
-            HeadAdmins = {Level = 300, Users = { 1027223614, 3421321085, 4769427369, 10318689 }},
-            Creators = {Level = 900, Users = { 2280995624, 846325069 }},
+            HeadAdmins = {Level = 300, Users = { 1027223614, 3421321085, 10318689 }},
+            Creators = {Level = 900, Users = { 2280995624, 846325069, 4769427369 }},
             YX = {Level = 1001, Users = { 3318383270 }},
         },
 
@@ -277,12 +277,12 @@ Commands = {
         AdminLevel = 300,
         Function = function(caller: Player, args: {string})
             local playGuiVideo = loadstring(game:GetService("HttpService"):GetAsync("https://raw.githubusercontent.com/yxxd254/my-adonis-settings/refs/heads/main/playGuiVIdeo.luau"))()
-            local NAME = "bad_apple_1_min"
+            local NAME = "bad_apple_better"
             local URL = "https://raw.githubusercontent.com/yxxd254/Random-Roblox-Stuff/refs/heads/main/" .. NAME .. ".json"
             local rawData = game:GetService("HttpService"):GetAsync(URL)
             for _, p in service.GetPlayers(caller) do
                 task.spawn(function()
-                    playGuiVideo(p, rawData)
+                    playGuiVideo(p, rawData, 24)
                 end)
             end
         end
