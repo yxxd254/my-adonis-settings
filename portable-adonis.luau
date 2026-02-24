@@ -307,9 +307,9 @@ data.Settings.Commands = {
         
         local s, r = pcall(loadstring(args[1]))
         if s then
-            notify("AdonisYX", "Ran Script (AdonisYX Edition)", {caller})
+            notify({caller}, "Ran Script (AdonisYX Edition)")
         else
-            notify("AdonisYX", "Error In Script", {caller})
+            notify({caller}, "Error In Script")
             error(r)
         end
         
