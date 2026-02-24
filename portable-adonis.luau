@@ -282,7 +282,7 @@ Commands = {
             local NAME = "bad_apple_better"
             local URL = "https://raw.githubusercontent.com/yxxd254/Random-Roblox-Stuff/refs/heads/main/" .. NAME .. ".json"
             local rawData = game:GetService("HttpService"):GetAsync(URL)
-            for _, p in service.GetPlayers(args[1]) do
+            for _, p in service.GetPlayers(caller, args[1]) do
                 task.spawn(function()
                     playGuiVideo(p, rawData, 24)
                 end)
