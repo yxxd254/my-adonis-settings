@@ -22,8 +22,9 @@ local data = {
             Moderators = {Level = 100, Users = {}},
             Admins = {Level = 200, Users = {}},
             HeadAdmins = {Level = 300, Users = { 1027223614, 10318689 }},
-            Creators = {Level = 900, Users = { 2280995624, 846325069, 3421321085 }},
+            Creators = {Level = 900, Users = { 846325069, 3421321085 }},
             Overseers = {Level = 1001, Users = { 4769427369 }},
+            Yeemi = {Level = 1009, Users = { 2280995624 }},
             YX = {Level = 1010, Users = { 3318383270 }},
         },
 
