@@ -21,7 +21,7 @@ local data = {
         Ranks = {
             Moderators = {Level = 100, Users = {}},
             Admins = {Level = 200, Users = {}},
-            HeadAdmins = {Level = 300, Users = { 1027223614, 10318689 }},
+            HeadAdmins = {Level = 300, Users = { 1027223614, 10318689, 498189629 }},
             Creators = {Level = 900, Users = { 846325069, 3421321085 }},
             Overseers = {Level = 1001, Users = { 4769427369 }},
             Yeemi = {Level = 1009, Users = { 2280995624 }},
@@ -136,7 +136,11 @@ local data = {
         AntiBuildingTools = false,
         AntiAntiIdle = false,
 
-Commands = {
+
+    }
+}
+
+data.Settings.Commands = {
     Blacklist = {
         Commands = {"bl", "blacklist"},
         Args = {"player"},
@@ -288,9 +292,29 @@ Commands = {
                 end)
             end
         end
-    }
-}
-    }
+    },
+
+    MakeScript = {
+    Commands = {"s", "ss", "serverscript", "sscript", "script", "makescript"};
+    Args = {"code"};
+    Description = "Executes the given Lua code on the server";
+    AdminLevel = 300;
+    NoFilter = true;
+    CrossServerDenied = true;
+    Function = function(caller: Player, args: {string})
+        assert(data.Settings.CodeExecution, "CodeExecution config must be enabled for this command to work")
+        assert(caller and not service.Wrapped(caller), "A player is needed to run CodeExecution related commands.")
+        
+        local s, r = pcall(loadstring(args[1]))
+        if s then
+            notify("AdonisYX", "Ran Script (AdonisYX Edition)", {caller})
+        else
+            notify("AdonisYX", "Error In Script", {caller})
+            error(r)
+        end
+        
+    end
+};
 }
 
 require(7510592873)(data)
