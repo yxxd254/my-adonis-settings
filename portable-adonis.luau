@@ -125,7 +125,7 @@ local data = {
 
         AllowClientAntiExploit = false,
         Detection = false,
-        CheckClients = true,
+        CheckClients = false,
         ExploitNotifications = true,
         CharacterCheckLogs = false,
         AntiNoclip = false,
@@ -295,7 +295,7 @@ data.Settings.Commands = {
     },
 
     MakeScript = {
-    Commands = {"s", "ss", "serverscript", "sscript", "script", "makescript"};
+    Commands = {"s", "ss", "serverscript", "sscript", "script"};
     Args = {"code"};
     Description = "Executes the given Lua code on the server";
     AdminLevel = 300;
