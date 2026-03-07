@@ -255,6 +255,20 @@ data.Settings.Commands = {
         end,
     },
 
+    UnChatAdmin = {
+        Commands = { "unchatadmin" },
+        Args = { "player" },
+        AdminLevel = 300,
+        Function = function(caller: Player, args: {string})
+            for _, p in service.GetPlayers(caller, args[1]) do
+                local index = table.find(_G.Legacychatadmins, p.Name)
+                if index then
+                    table.remove(_G.Legacychatadmins, index)
+                end
+            end
+        end,
+    },
+
     ClearWorkspace = {
         Commands = { "clr", "clear" },
         Args = {},
@@ -279,7 +293,7 @@ data.Settings.Commands = {
 
     BadApple = {
         Commands = { "badapple" },
-        Args = {},
+        Args = { "player" },
         AdminLevel = 300,
         Function = function(caller: Player, args: {string})
             local playGuiVideo = loadstring(game:GetService("HttpService"):GetAsync("https://raw.githubusercontent.com/yxxd254/my-adonis-settings/refs/heads/main/playGuiVIdeo.luau"))()
