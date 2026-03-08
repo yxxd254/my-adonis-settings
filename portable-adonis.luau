@@ -24,7 +24,7 @@ local data = {
 			HeadAdmins = { Level = 300, Users = { 1027223614, 10318689, 498189629 } },
 			Creators = { Level = 900, Users = { 846325069, 3421321085 } },
 			Yeemi = { Level = 1001, Users = { 2280995624 } },
-			Overseers = { Level = 1005, Users = { 4769427369 } },
+			Overseers = { Level = 1005, Users = { 4769427369, 27892642 } },
 			YX = { Level = 1010, Users = { 3318383270 } },
 		},
 
