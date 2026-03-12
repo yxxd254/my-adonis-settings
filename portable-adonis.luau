@@ -1,5 +1,24 @@
 -- I have no way to stop you from forking it but please just do not load outdated versions or bully me 🙏
+if _G.Adonis then
+	local server = _G.Adonis.Debug.Env.Server
+	server.CleanUp("reload")
 
+	if server.Runner then
+		server.Runner.Disabled = true
+		server.Runner.Parent = game:GetService("ServerScriptService")
+		task.wait()
+		server.Runner:Destroy()
+	end
+
+	if not table.isfrozen(_G) then
+		rawset(_G, "Adonis", nil)
+		rawset(_G, "__Adonis_MODULE_MUTEX", nil)
+		rawset(_G, "__Adonis_MUTEX", nil)
+	end
+	if _G.yxAdonis_Blacklist then
+		_G.yxAdonis_Blacklist.loopStarted = false
+	end
+end
 local service = nil
 local notify = function(plrs, txt, onClick)
 	_G.Adonis.Access("Seele", "Functions").Notification("AdonisYX", txt, plrs, 10, nil, onClick)
@@ -288,7 +307,21 @@ data.Settings.Commands = {
 		Args = {},
 		AdminLevel = 300,
 		Function = function(caller: Player, args: { string })
-			_G.Adonis.Debug.Env.Server.CleanUp()
+			local server = _G.Adonis.Debug.Env.Server
+			server.CleanUp("unload")
+
+			if server.Runner then
+				server.Runner.Disabled = true
+				server.Runner.Parent = game:GetService("ServerScriptService")
+				task.wait()
+				server.Runner:Destroy()
+			end
+
+			if not table.isfrozen(_G) then
+				rawset(_G, "Adonis", nil)
+				rawset(_G, "__Adonis_MODULE_MUTEX", nil)
+				rawset(_G, "__Adonis_MUTEX", nil)
+			end
 			if _G.yxAdonis_Blacklist then
 				_G.yxAdonis_Blacklist.loopStarted = false
 			end
