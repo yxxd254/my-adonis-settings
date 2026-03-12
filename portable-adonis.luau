@@ -15,9 +15,6 @@ if _G.Adonis then
 		rawset(_G, "__Adonis_MODULE_MUTEX", nil)
 		rawset(_G, "__Adonis_MUTEX", nil)
 	end
-	if _G.yxAdonis_Blacklist then
-		_G.yxAdonis_Blacklist.loopStarted = false
-	end
 end
 local service = nil
 local notify = function(plrs, txt, onClick)
@@ -131,7 +128,7 @@ local data = {
 			DataStore = false,
 			Core = true,
 			Service = true,
-			Remote = false,
+			Remote = true,
 			HTTP = false,
 			Anti = false,
 			Logs = true,
@@ -217,7 +214,7 @@ data.Settings.Commands = {
 		end,
 		Function = function(caller: Player, args: { string })
 			local tabData = data.Settings.Commands.ShowBlacklist.ListUpdater(caller)
-
+			local remote = _G.Adonis.Access("Seele", "Remote")
 			Remote.MakeGui(caller, "List", {
 				Title = "Blacklist",
 				Icon = server.MatIcons and server.MatIcons.Gavel or nil,
