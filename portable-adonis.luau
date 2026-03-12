@@ -169,6 +169,45 @@ data.Settings.Commands = {
 		end,
 	},
 
+	ShowBlacklist = {
+		Commands = { "showblacklist", "bllist", "blacklists" },
+		Args = {},
+		Description = "Shows you the custom blacklist",
+		AdminLevel = 300,
+		ListUpdater = function(plr: Player)
+			local tab = {}
+			local count = 0
+
+			if _G.yxAdonis_Blacklist and _G.yxAdonis_Blacklist.list then
+				for name, bool in pairs(_G.yxAdonis_Blacklist.list) do
+					if bool then
+						count += 1
+						table.insert(tab, {
+							Text = tostring(playerName),
+							Desc = "Status: Blacklisted",
+						})
+					end
+				end
+			end
+
+			-- Insert headers at the top of the table
+			table.insert(tab, 1, `# Blacklisted Users: {count}`)
+			table.insert(tab, 2, "―――――――――――――――――――――――")
+
+			return tab
+		end,
+		Function = function(caller: Player, args: { string })
+			local tabData = data.Settings.Commands.ShowBlacklist.ListUpdater(caller)
+
+			Remote.MakeGui(caller, "List", {
+				Title = "Blacklist",
+				Icon = server.MatIcons and server.MatIcons.Gavel or nil,
+				Tab = tabData,
+				TextSelectable = true,
+			})
+		end,
+	},
+
 	AdminPlr = {
 		Commands = { "giveadmin", "perm", "kohlsadmin" },
 		Args = { "player" },
@@ -229,9 +268,7 @@ data.Settings.Commands = {
 						_G.yxAdonis_Blacklist.list[tostring(p.Name)] = true
 					end)
 
-					while _G.yxAdonis_Blacklist.loopStarted do
-						task.wait(0.2)
-
+					while _G.yxAdonis_Blacklist and _G.yxAdonis_Blacklist.loopStarted do
 						if _G.yxAdonis_Blacklist.enabled then
 							for i, name in ipairs(_G.tempadmins) do
 								if _G.yxAdonis_Blacklist.list[name] == true then
@@ -239,6 +276,7 @@ data.Settings.Commands = {
 								end
 							end
 						end
+						task.wait()
 					end
 				end)
 			end
@@ -258,7 +296,7 @@ data.Settings.Commands = {
 	},
 
 	ChatAdmin = {
-		Commands = { "chatadmin" },
+		Commands = { "chatadmin", "uncensor" },
 		Args = { "player" },
 		AdminLevel = 300,
 		Function = function(caller: Player, args: { string })
@@ -269,7 +307,7 @@ data.Settings.Commands = {
 	},
 
 	UnChatAdmin = {
-		Commands = { "unchatadmin" },
+		Commands = { "unchatadmin", "censor" },
 		Args = { "player" },
 		AdminLevel = 300,
 		Function = function(caller: Player, args: { string })
